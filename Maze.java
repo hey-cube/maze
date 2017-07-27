@@ -60,7 +60,6 @@ public class Maze {
 		boolean continueFlag = true;
 
 		// 以下、wall[][]全体を埋めるまで繰り返し
-		int count = 0;
 		while (continueFlag) {
 
 			// 上下左右のいずれかに限界まで道を伸ばす
