@@ -114,11 +114,12 @@ public class Maze {
 		int direction = rmd.nextInt(4);
 
 		for (int i = 0; i < 4; i++) {
-			direction = (direction + i) % 4;
 			if (canExtendPathWithDir(direction)) {
 				movePoint(direction);
 				return true;
 			}
+			
+			direction = (direction + 1) % 4;
 		}
 
 		return false;
