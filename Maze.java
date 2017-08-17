@@ -5,9 +5,9 @@ import java.util.Stack;
 import java.util.Scanner;
 
 public class Maze {
-		static int mazeSize = 30;
+		static int mazeSize = 0;
 		// 壁: true, 道: false
-		static boolean[][] wall = new boolean[mazeSize][mazeSize];
+		static boolean[][] wall;
 		static int row;
 		static int col;
 		static Stack<Integer> rowStack = new Stack<Integer>();
@@ -15,6 +15,15 @@ public class Maze {
 		static int usrRow = mazeSize - 1, usrCol = 1, goalRow = 0, goalCol = mazeSize - 2;
 
 	public static void main(String[] args) {
+
+		if (args.length != 1) {
+			System.out.println("Usage: java Maze [mazeSize]");
+			return;
+		}
+
+		mazeSize = Integer.parseInt(args[0]);
+		wall = new boolean[mazeSize][mazeSize];
+
 		printUsage();
 
 		createMaze();
@@ -114,12 +123,11 @@ public class Maze {
 		int direction = rmd.nextInt(4);
 
 		for (int i = 0; i < 4; i++) {
+			direction = (direction + i) % 4;
 			if (canExtendPathWithDir(direction)) {
 				movePoint(direction);
 				return true;
 			}
-			
-			direction = (direction + 1) % 4;
 		}
 
 		return false;
